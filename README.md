@@ -9,6 +9,7 @@ The application is designed to provide the latest weather data, average weather 
 - UUID as an ID parameter
 - custom Exception
 - UnitTest (Junit 5 + Mockito)
+- Docker compose
 
 
 ## Tech
@@ -23,6 +24,7 @@ Receipt application uses next technologies:
 - RESTFUL
 - JUnit 5
 - Mockito
+- Docker compose
 
 
 ## GUIDE

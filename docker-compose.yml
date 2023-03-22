@@ -1,0 +1,53 @@
+version: '3.5'
+services:
+  minio:
+    build: minio
+    image: weather_minio:1.0.0
+    command: server --console-address ":9001" /weather_data
+    environment:
+      MINIO_ROOT_USER: 9Z939G61IPEV0WFHWIW1
+      MINIO_ROOT_PASSWORD: krPc7XIcvXPCGnZpX1BtMnmWr4OaTzXqsH+50Jd6
+    ports:
+      - "83:9000"
+      - "84:9001"
+    networks:
+      - weather_ntwrk
+  db:
+    build: postgresql
+    image: weather_postgresql:1.0.0
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12378
+    ports:
+      - "5432:5432"
+    networks:
+      - weather_ntwrk
+  pgadmin:
+    build: pgadmin
+    image: weather_pgadmin:1.0.0
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: root
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "82:80"
+    networks:
+      - weather_ntwrk
+
+  weather-service:
+    build: weather-service
+    image: weather-service:1.0.0
+    networks:
+      - weather_ntwrk
+ 
+  proxy:
+    build: proxy
+    image: weather_proxy:1.0.0
+    ports:
+      - "80:80"
+    networks:
+      - weather_ntwrk
+networks:
+    weather_ntwrk:
+      name: weather_ntwrk
