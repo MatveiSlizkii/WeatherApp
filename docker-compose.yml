@@ -14,40 +14,46 @@ services:
       - weather_ntwrk
   db:
     build: postgresql
-    image: weather_postgresql:1.0.0
+    image: weather_postgresql:3.0.0
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12378
+      POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
     networks:
       - weather_ntwrk
   pgadmin:
     build: pgadmin
-    image: weather_pgadmin:1.0.0
+    image: weather_pgadmin:2.0.0
     restart: always
     environment:
-      PGADMIN_DEFAULT_EMAIL: root
-      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_DEFAULT_EMAIL: server@myapp.de
+      PGADMIN_DEFAULT_PASSWORD: postgres
     ports:
       - "82:80"
     networks:
       - weather_ntwrk
 
+
   weather-service:
     build: weather-service
-    image: weather-service:1.0.0
+    image: weather-service:3.0.0
+
     networks:
       - weather_ntwrk
- 
+    depends_on:
+      - db
+
   proxy:
     build: proxy
-    image: weather_proxy:1.0.0
     ports:
       - "80:80"
     networks:
       - weather_ntwrk
+    depends_on:
+      - weather-service
+
 networks:
     weather_ntwrk:
       name: weather_ntwrk
