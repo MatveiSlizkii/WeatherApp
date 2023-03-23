@@ -14,7 +14,7 @@ services:
       - weather_ntwrk
   db:
     build: postgresql
-    image: weather_postgresql:3.0.0
+    image: weather_postgresql:1.0.0
     restart: always
     environment:
       POSTGRES_USER: postgres
@@ -25,7 +25,7 @@ services:
       - weather_ntwrk
   pgadmin:
     build: pgadmin
-    image: weather_pgadmin:2.0.0
+    image: weather_pgadmin:1.0.0
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: server@myapp.de
@@ -35,10 +35,17 @@ services:
     networks:
       - weather_ntwrk
 
+  swagger-ui:
+    build: swagger-ui
+    image: weather_swagger-ui:1.0.0
+    ports:
+      - "81:8080"
+    networks:
+      - weather_ntwrk
 
   weather-service:
     build: weather-service
-    image: weather-service:3.0.0
+    image: weather-service:1.0.0
 
     networks:
       - weather_ntwrk

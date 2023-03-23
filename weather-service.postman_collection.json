@@ -1,0 +1,26 @@
+{
+	"info": {
+		"_postman_id": "c35fd9c7-8ec7-40d6-ad0c-c309a3e11ab0",
+		"name": "Weather SENLA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19350920"
+	},
+	"item": [
+		{
+			"name": "info",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "avr",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

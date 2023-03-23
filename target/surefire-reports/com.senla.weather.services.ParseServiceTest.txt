@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.senla.weather.services.ParseServiceTest
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.603 s - in com.senla.weather.services.ParseServiceTest
